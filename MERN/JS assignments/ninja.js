@@ -11,6 +11,9 @@ class Ninja {
     showStats(){
         console.log(`Health:${this.health}\nSpeed:${this.speed}\nStrength:${this.strength}`)
     }
+    drinkSake(){
+        this.health += 10;
+    }
 }
 
 const ninja1 = new Ninja("Diamond Dave");
