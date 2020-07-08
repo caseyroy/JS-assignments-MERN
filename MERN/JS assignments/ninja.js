@@ -5,17 +5,17 @@ class Ninja {
         this.speed = speed;
         this.strength = strength;
     }
-    sayName(){
+    sayName = () => {
         console.log(`Name:${this.name}`)
     }
-    showStats(){
+    showStats = () => {
         console.log(`Health:${this.health}\nSpeed:${this.speed}\nStrength:${this.strength}`)
     }
-    drinkSake(){
+    drinkSake = () => {
         this.health += 10;
     }
 }
 
-const ninja1 = new Ninja("Diamond Dave");
+const ninja1 = new Ninja("Ninja-Rella");
 ninja1.sayName();
 ninja1.showStats();
