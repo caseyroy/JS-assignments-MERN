@@ -1,14 +1,14 @@
 import React from 'react';
 
 import './App.css';
-
-
-import newComp1 from './components/newComp1';
+import NewComp1 from './components/NewComp1';
 
 function App() {
   return (
     <div className="App">
-      <newComp1 />
+      <header className="App-header">
+        <NewComp1 />
+      </header>
     </div>
   );
 }
