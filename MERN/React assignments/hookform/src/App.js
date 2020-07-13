@@ -9,7 +9,8 @@ function App() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    hasBeenSubmitted: useState(false)
   });
   return (
     <div className="App">
