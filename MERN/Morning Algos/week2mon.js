@@ -23,3 +23,26 @@ const deDupe = (some_array, other_array) => {
     return new_array
 }
 console.log(deDupe(array1, array3))
+
+const try2 = (array1, array2) => {
+    newArray = [];
+    i = 0;
+    j = 0;
+
+    while (i < array1.length && j < array2.length) {
+        if (array[i] == array2[j] && array1[i] !== newArray[newArray.length - 1]) {
+            newArray.push(array1[i]);
+            i++;
+            j++;
+        }
+        else if (array[i] < array2[i]) {
+            j++;
+        }
+        else if (array[i] > array2[j]) {
+            i++;
+        }
+    }
+}
+return newArray
+
+//only part i dont get is the !== newArray[newArray.length -1] part, look that up later
