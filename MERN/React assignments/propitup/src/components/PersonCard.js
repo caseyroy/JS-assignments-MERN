@@ -5,8 +5,6 @@ const PersonCard = props => {
     const onclickhandler = () => {
         setAge(age + 1)
     }
-
-
     return (
         <div>
             <ul id="list">
