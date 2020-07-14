@@ -94,7 +94,7 @@ const UserForm = (props) => {
                     <input onChange={onChange} type="password" name="password" />
                     {
                         errors.password ?
-                            <p style={{ color: 'red' }}>Password must match and  be at least 8 characters</p> :
+                            <p style={{ color: 'red' }}>Password must match and be at least 8 characters</p> :
                             ''
                     }
                 </div>
