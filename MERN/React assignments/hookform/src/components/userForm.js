@@ -1,79 +1,116 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const UserForm = (props) => {
-    const { formData, formResults } = props;
-    const onSubmit = (e) => {
+    const { formData, formResults, hasBeenSubmitted, setHasBeenSubmitted } = props;
+    const [errors, setErrors] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
+    const onChange = (e) => {
         formResults({
             ...formData,
             [e.target.name]: e.target.value
-        })
-        const formMessage = () => {
-            if (setHasBeenSubmitted) {
-                return alert("Thank you for your form submission");
-            }
-            else {
-                return alert("Please submit the form");
-            }
+        });
+        let val = e.target.value;
+        let err = "";
+        switch (e.target.name) {
+            case "firstName":
+            case "lastName":
+                if (val.length > 0 && val.length < 2) {
+                    err = "name error"
+                }
+                break;
+            case "email":
+                if (val.length > 0 && val.length < 5) {
+                    err = "email error"
+                }
+                break;
+            case "password":
+            case "confirmPassword":
+                if (val.length > 0 && val.length < 8 && formData.password == formData.confirmPassword) {
+                    err = "password error"
+                }
+            default:
         }
+        setErrors({
+            ...errors,
+            [e.target.name]: err
+        });
+    };
+    const createUser = (e) => {
+        e.preventDefault();
+        setHasBeenSubmitted(true);
+        const newUser = { formData };
     }
-    // const createUser = (e) => {
-    //     e.preventDefault();
-    //     const newUser = { firstName, lastName, email, password, confirmPassword };
-    //     setHasBeenSubmitted(true);
+    const formMessage = () => {
+        if (hasBeenSubmitted(true)) {
+            return "Thank you for submitting the form!";
+        } else {
+            return "Welcome, please submit the form";
+        }
+    };
+    return (
+        <div>
+            <h3>Submit Your Information</h3>
+            <form onSubmit={createUser}>
+                {
+                    hasBeenSubmitted ?
+                        <h3>Thank you for your form submission</h3> :
+                        <h3>Please submit the form</h3>
+                }
+                <div>
+                    <label>First Name: </label>
+                    <input onChange={onChange} type="text" name="firstName" />
+                    {
+                        errors.firstName ?
+                            <p style={{ color: 'red' }}>Frist Name must be at least 2 characters</p> :
+                            ''
+                    }
+                </div>
+                <div>
+                    <label>Last Name: </label>
+                    <input onChange={onChange} type="text" name="lastName" />
+                    {
+                        errors.lastName ?
+                            <p style={{ color: 'red' }}>Last Name must be at least 2 characters</p> :
+                            ''
+                    }
+                </div>
+                <div>
+                    <label>Email Address: </label>
+                    <input onChange={onChange} type="email" name="email" />
+                    {
+                        errors.email ?
+                            <p style={{ color: 'red' }}>Email must be at least 5 characters</p> :
+                            ''
+                    }
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input onChange={onChange} type="password" name="password" />
+                    {
+                        errors.password ?
+                            <p style={{ color: 'red' }}>Password must match and  be at least 8 characters</p> :
+                            ''
+                    }
+                </div>
+                <div>
+                    <label>Confirm Password: </label>
+                    <input onChange={onChange} type="password" name="confirmPassword" />
+                    {
+                        errors.confirmPassword ?
+                            <p style={{ color: 'red' }}>Password must match and be at least 8 characters</p> :
+                            ''
+                    }
+                </div>
+                <input type="submit" value="Create User" />
+            </form>
+        </div >
+    );
 };
-const formMessage = () => {
-    if (setHasBeenSubmitted) {
-        return alert("Thank you for your form submission");
-    }
-    else {
-        return alert("Please submit the form");
-    }
-}
-// const [firstName, setFirstName] = useState("");
-// const [lastName, setLastName] = useState("");
-// const [email, setEmail] = useState("");
-// const [password, setPassword] = useState("");
-// const [confirmPassword, setConfirmPassword] = useState("");
-
-// const createUser = (e) => {
-//     e.preventDefault();
-//     const newUser = { firstName, lastName, email, password, confirmPassword };
-//     console.log("Welcome", newUser);
-// };
-
-return (
-    <div>
-        <h3>Submit Your Information</h3>
-        <form onSubmit={onSubmit} >
-            <div>
-                <label>First Name: </label>
-                <input type="text" name="firstName" />
-                {/* <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} /> */}
-            </div>
-            <div>
-                <label>Last Name: </label>
-                <input type="text" name="lastName" />
-                {/* <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)} /> */}
-            </div>
-            <div>
-                <label>Email Address: </label>
-                <input type="email" name="email" />
-                {/* <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} /> */}
-            </div>
-            <div>
-                <label>Password: </label>
-                <input type="password" name="password" />
-                {/* <input type="text" name="password" onChange={(e) => setPassword(e.target.value)} /> */}
-            </div>
-            <div>
-                <label>Confirm Password: </label>
-                <input type="password" name="confirmPassword" />
-                {/* <input type= "text" name="confirmPassword" onChange={(e) => setConfirmPassword(e.target.value)} /> */}
-            </div>
-            <input type="submit" value="Create User" />
-        </form>
-    </div >
-);
 
 export default UserForm;
