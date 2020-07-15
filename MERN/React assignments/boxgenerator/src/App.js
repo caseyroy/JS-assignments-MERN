@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import BoxForm from './components/BoxForm';
 
 function App() {
-  const [state, setState] = setState({})
+  const [state, setState] = useState([])
   return (
     <div className="App">
-      <BoxForm />
-
+      <BoxForm state={state} setState={setState} />
     </div>
   );
 }
