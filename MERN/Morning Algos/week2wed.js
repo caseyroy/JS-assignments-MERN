@@ -8,7 +8,7 @@ think of a venn diagram filled in except the ovlerapping middle part is not fill
 Venn Diagram Visualization: https://res.cloudinary.com/practicaldev/image/fetch/s--Kuq7OH5V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/eq8zrfkbs9jntiimwjk9.png
 */
 
-const { testDriver } = require("../../helpers");
+const { testDriver } = require("../Morning Algos/helper/helper");
 
 const test1SetA = [1, 2];
 const test1SetB = [2, 1];
@@ -33,6 +33,31 @@ const testCases = [
     { arguments: [test2SetA, test2SetB], expected: expected2 },
     { arguments: [test3SetA, test3SetB], expected: expected3 },
 ];
-testDriver([deltaOfTwoSets], testCases);
+/*
+didnt work
+*/
 
-function deltaOfTwoSets(setA, setB) { }
+function deltaOfTwo(arrA, arrB) {
+    const result = [];
+    let i = 0;
+    let temp = 0;
+    for (j = 0; j < arrB.length; j++) {
+        temp = arrA[i];
+        if (arrB[j] == temp) {
+            temp = 0
+            i++;
+        }
+        else if (temp == 0) {
+            i++;
+        }
+        else {
+            result.push(arrA[i]);
+            result.push(arrB[j]);
+            i++
+        }
+    }
+
+    return result
+}
+
+testDriver([deltaOfTwo], testCases);
