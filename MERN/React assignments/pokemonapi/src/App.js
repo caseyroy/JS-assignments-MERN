@@ -1,37 +1,20 @@
 import React, { useState } from 'react';
 // import FetchPokemon from './components/fetchPokemon'
+
 import './App.css';
+import PokemonList from './components/PokemonList';
+import PokeButton from './components/PokeButton';
 
 function App() {
   const [state, setState] = useState([]);
 
 
-  const fetchPokemon = () => {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=1000")
-      .then(res => {
-        return res.json()
-      })
-      .then(
-        response => {
-          setState(response.results);
-        })
-      .catch(e => console.log(e));
-    console.log(state);
-  }
   return (
     <div className="App">
-      <button onClick={fetchPokemon}>Gotta Catch 'em All!</button>
-      {
-        state.map((item, idx) => {
-          return (
-            <div key={idx}>
-              <label>^_^{item.name}^_^</label>
-            </div>
-          )
-        })}
+      <PokeButton setState={setState} />
+      <PokemonList state={state} />
     </div >
   );
 }
-
 
 export default App;
