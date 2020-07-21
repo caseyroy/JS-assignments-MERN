@@ -31,7 +31,6 @@ const ListComponent = (props) => {
                     return (
                         <div key={idx}>
                             <label style={labelStyle} >{item.name}</label>
-                            {/* <label style={{ textDecoration: list.isAquired ? "line-through" : "none" }}>{list.katanaset}</label> */}
                             <input onChange={(event) => { isChecked(idx) }} type="checkbox" checked={item.isAquired} />
                             <button onClick={(event) => { handleDelete(idx); }}>Delet Set</button>
                         </div>
