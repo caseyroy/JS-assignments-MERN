@@ -7,7 +7,7 @@ function App() {
 
 
   const fetchPokemon = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=1000")
       .then(res => {
         return res.json()
       })
